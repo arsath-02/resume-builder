@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useState } from 'react';
+import ChooseOption from './component/ChooseOption';
+import ResumeDisplay from './component/ResumeDisplay';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [resumeData, setResumeData] = useState(null);
+
+  const handleFileUpload = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('http://localhost:5000/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setResumeData(data);
+      } else {
+        console.error('Error uploading file:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ChooseOption onFileUpload={handleFileUpload} />
+      {resumeData && <ResumeDisplay resumeData={resumeData} />}
     </div>
   );
-}
+};
 
 export default App;
