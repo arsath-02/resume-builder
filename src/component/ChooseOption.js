@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './ChooseOption.css';
 
-const ChooseOption = () => {
+const ChooseOption = ({ onFileUpload }) => {
   const [file, setFile] = useState(null);
-  const [result, setResult] = useState(null);
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -20,10 +21,15 @@ const ChooseOption = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      setResult(response.data);
+      onFileUpload(response.data);
+      setFile(null); // Clear the file input after successful upload
+      navigate('/resume'); // Navigate to the resume form page
     } catch (error) {
       console.error('Error uploading file:', error);
     }
+  };
+  const handleBuildFromScratch = () => {
+    navigate('/resume'); // Navigate to the form page
   };
 
   return (
@@ -37,7 +43,7 @@ const ChooseOption = () => {
           <h3>Upload Resume</h3>
           <p>Upload your existing resume to generate a cover letter based on its content.</p>
           <input type="file" onChange={handleFileChange} />
-          <button className="btn" onClick={handleUpload}>Upload Resume</button>
+          <button className="btn" onClick={handleUpload} disabled={!file}>Upload Resume</button>
         </div>
         <div className="option">
           <div className="icon">
@@ -45,15 +51,9 @@ const ChooseOption = () => {
           </div>
           <h3>Build From Scratch</h3>
           <p>Create a cover letter from scratch by providing your details and preferences.</p>
-          <button className="btn">Build From Scratch</button>
+          <button className="btn" onClick={handleBuildFromScratch}>Build From Scratch</button>
         </div>
       </div>
-      {result && (
-        <div className="result">
-          <h3>Parsed Resume Data:</h3>
-          <pre>{JSON.stringify(result, null, 2)}</pre>
-        </div>
-      )}
     </div>
   );
 };

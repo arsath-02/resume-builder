@@ -1,0 +1,84 @@
+/* Main container styling */
+.resume-container {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 20px;
+    max-width: 210mm; /* Width of A4 page */
+    margin: auto;
+    background-color: #f9f9f9; /* Light background for better contrast */
+}
+
+/* Header styling */
+.resume-header {
+    text-align: center;
+    margin-bottom: 20px; /* Space below header */
+}
+
+.resume-header h1 {
+    font-size: 28px; /* Larger font size for name */
+    margin: 0;
+    color: #333;
+}
+
+.resume-header .contact-info {
+    font-size: 16px; /* Slightly larger font size for contact info */
+    color: #555;
+    margin-top: 5px;
+}
+
+.resume-header .contact-info a {
+    text-decoration: none;
+    color: #0066cc;
+}
+
+.resume-header .contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Divider styling */
+.resume-divider {
+    border-top: 2px solid #007bff; /* Blue divider for better visibility */
+    margin: 20px 0;
+}
+
+/* Section styling */
+.resume-section {
+    margin-bottom: 30px; /* Increased margin for better separation between sections */
+}
+
+.resume-section h2 {
+    font-size: 22px; /* Larger font size for section headings */
+    border-bottom: 2px solid #007bff; /* Blue underline for section headings */
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.resume-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resume-section ul li {
+    margin-bottom: 15px; /* Increased margin for list items */
+}
+
+/* Button styling */
+.pdf-download-button {
+    display: block;
+    margin: 30px auto; /* More space above and below the button */
+    padding: 12px 25px; /* Increased padding for better clickability */
+    font-size: 18px; /* Larger font size for the button */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px; /* Rounded corners for a modern look */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.pdf-download-button:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+}

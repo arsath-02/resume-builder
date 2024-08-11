@@ -1,0 +1,146 @@
+/* Container for the entire resume */
+.resume-container {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    max-width: 210mm; /* A4 width */
+    margin: auto;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Header section */
+.header {
+
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header img {
+    height: 1in; /* Matches the image size in LaTeX */
+}
+
+.header .contact-info {
+    text-align: right;
+}
+
+.header .contact-info p {
+    margin: 0;
+}
+
+.header .contact-info .name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header .contact-info .details {
+    font-size: 14px;
+}
+
+/* Section headings */
+.section-heading {
+    background-color: #dcdcdc;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* Table styling */
+.table-container {
+    margin: 20px 0;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.table-container th,
+.table-container td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-container th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Lists styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li::before {
+    content: "\2022";
+    color: #333;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Section styling */
+.section {
+    margin-bottom: 20px;
+}
+
+/* Skills and Interests */
+.skills-interests {
+    margin-bottom: 20px;
+}
+
+.skills-interests p {
+    margin: 0;
+}
+
+/* Button styling */
+.pdf-download-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pdf-download-button:hover {
+    background-color: #0056b3;
+}
+
+/* Custom spacing for specific elements */
+.resitem {
+    margin-bottom: 5px;
+}
+
+.resheading {
+    background-color: #dcdcdc;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.ressubheading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.ressubheading .title {
+    font-weight: bold;
+}
+
+.ressubheading .details {
+    font-style: italic;
+}

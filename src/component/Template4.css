@@ -1,0 +1,93 @@
+/* Template4.css */
+
+.template4 {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0.4in;
+    max-width: 8.5in; /* width of A4 in inches */
+    background: #f4f4f4; /* Different background color */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #333;
+}
+
+.template4 header {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.template4 header h1 {
+    font-size: 2.1em; /* Slightly larger font size */
+    margin: 0;
+    color: #222; /* Slightly darker color */
+}
+
+.template4 header p {
+    margin: 0.3em 0;
+    font-size: 1.1em; /* Slightly larger font size */
+    color: #666;
+}
+
+.template4 section {
+    margin-bottom: 1.5em; /* Increased margin for sections */
+}
+
+.template4 section h2 {
+    border-bottom: 2px solid #333; /* Different border color */
+    padding-bottom: 0.3em; /* Increased padding */
+    font-size: 1.3em; /* Larger font size for headers */
+    color: #000;
+    margin: 0;
+}
+
+.template4 section ul {
+    list-style: disc; /* Different list style */
+    padding: 0;
+    margin: 0;
+}
+
+.template4 section li {
+    margin: 0.7em 0; /* Increased margin for list items */
+}
+
+.template4 section p {
+    margin: 0.6em 0;
+    line-height: 1.8; /* Increased line height for readability */
+}
+
+.template4 .tabular {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.template4 .tabular th, .template4 .tabular td {
+    padding: 0.3em; /* Increased padding */
+    text-align: left;
+}
+
+.template4 .tabular th {
+    font-weight: bold;
+}
+
+.template4 .tabular td {
+    font-weight: normal;
+}
+
+.template4 .pdf-download-button {
+    display: block;
+    width: 100%;
+    padding: 0.6em; /* Increased padding */
+    margin: 1.5em 0; /* Increased margin */
+    background-color: #28a745; /* Different button color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Slightly rounded corners */
+    font-size: 1.1em; /* Slightly larger font size */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.template4 .pdf-download-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}

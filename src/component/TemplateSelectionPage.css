@@ -1,0 +1,70 @@
+/* TemplateSelectionPage.css */
+
+.template-selection-page {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f4f4f9; /* Light grey background for the page */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .template-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .template-option {
+    width: 250px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ffffff; /* Background color of the card */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .template-option img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .template-option p {
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #555;
+    margin: 0;
+    background-color: #f7f7f7;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .template-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .template-option a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .template-option a:focus,
+  .template-option a:hover {
+    outline: none;
+    text-decoration: underline;
+  }
+  

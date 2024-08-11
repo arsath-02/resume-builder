@@ -3,9 +3,15 @@ from flask_cors import CORS
 import os
 import requests
 import json
+from pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
+
+# MongoDB setup
+client = MongoClient('mongodb://localhost:27017/')  # Update with your MongoDB URI if needed
+db = client['resume_database']
+collection = db['resumes']
 
 # Directory for uploaded files
 UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
@@ -23,22 +29,26 @@ def upload_file():
     
     # Save the file
     file_path = os.path.join(UPLOAD_FOLDER, file.filename)
-    file.save(file_path)
+    try:
+        file.save(file_path)
+    except Exception as e:
+        return jsonify({"error": f"Failed to save file: {str(e)}"}), 500
 
     # Prepare file for API request
-    files = {'chatgpt_resume': open(file_path, 'rb')}
-    headers = {'Authorization': '8ab418f2-1d91-4975-90cb-8e092a36ed56'}
-
-    # Send request to resume parsing API
     try:
-        response = requests.post(
-            url="https://www.docsaar.com/api/chatgpt_resume_parsing",
-            headers=headers,
-            files=files
-        )
-        response.raise_for_status()  # Check if request was successful
+        with open(file_path, 'rb') as f:
+            files = {'chatgpt_resume': f}
+            headers = {'Authorization': 'f3c0f729-e798-42b4-b79a-ca378bc4ac8d'}
+            response = requests.post(
+                url="https://www.docsaar.com/api/chatgpt_resume_parsing",
+                headers=headers,
+                files=files
+            )
+            response.raise_for_status()  # Check if request was successful
     except requests.RequestException as e:
         return jsonify({"error": f"API request failed: {str(e)}"}), 500
+    except Exception as e:
+        return jsonify({"error": f"Failed to prepare or send API request: {str(e)}"}), 500
 
     # Parse response
     try:
@@ -111,7 +121,7 @@ def upload_file():
             } for achievement in achievements
         ]
     }
-
+    print(resume_data)
     return jsonify(resume_data)
 
 if __name__ == '__main__':
