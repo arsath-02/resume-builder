@@ -1,0 +1,151 @@
+/* Container for the entire resume */
+#resume-template-2 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    max-width: 210mm; /* A4 width */
+    margin: auto;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Header section */
+#resume-template-2 .header {
+    display: flex;
+    justify-content: flex-end; /* Aligns contact info to the right */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#resume-template-2 .header img {
+    display: none; /* Hide logo */
+}
+
+#resume-template-2 .header .contact-info {
+    text-align: right;
+}
+
+#resume-template-2 .header .contact-info p {
+    margin: 0;
+}
+
+#resume-template-2 .header .contact-info .name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#resume-template-2 .header .contact-info .details {
+    font-size: 14px;
+}
+
+/* Unified Section Heading Styles */
+#resume-template-2 .section-heading {
+    background-color: #dcdcdc;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px; /* Unified font size for all section headings */
+}
+
+/* Table styling */
+#resume-template-2 .table-container {
+    margin: 20px 0;
+}
+
+#resume-template-2 .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+#resume-template-2 .table-container th,
+#resume-template-2 .table-container td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+#resume-template-2 .table-container th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Lists styling */
+#resume-template-2 ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#resume-template-2 ul li {
+    margin-bottom: 10px;
+}
+
+#resume-template-2 ul li::before {
+    content: "\2022";
+    color: #333;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Section styling */
+#resume-template-2 .section {
+    margin-bottom: 20px;
+}
+
+/* Skills and Interests */
+#resume-template-2 .skills-interests {
+    margin-bottom: 20px;
+}
+
+#resume-template-2 .skills-interests p {
+    margin: 0;
+}
+
+/* Button styling */
+#resume-template-2 .pdf-download-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for the button within #resume-template-2 */
+#resume-template-2 .pdf-download-button:hover {
+    background-color: #0056b3;
+}
+
+/* Custom spacing for specific elements */
+#resume-template-2 .resitem {
+    margin-bottom: 5px;
+}
+
+/* Consistent styling for various section headings */
+#resume-template-2 .resheading,
+#resume-template-2 .section-heading,
+#resume-template-2 .resume-section h2 {
+    background-color: #dcdcdc;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px; /* Ensure font size consistency */
+}
+
+#resume-template-2 .ressubheading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+#resume-template-2 .ressubheading .title {
+    font-weight: bold;
+}
+
+#resume-template-2 .ressubheading .details {
+    font-style: italic;
+}

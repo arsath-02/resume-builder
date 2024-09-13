@@ -1,0 +1,17 @@
+/* ResumeBuilder.css */
+
+.resume-builder-container {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background color */
+    max-width: 800px; /* Limit the width of the content */
+    margin: 0 auto; /* Center the content horizontally */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.resume-builder-title {
+    text-align: center; /* Center the title */
+    font-size: 2rem; /* Larger font size for the title */
+    margin-bottom: 20px; /* Space below the title */
+    color: #333; /* Dark text color for better readability */
+}

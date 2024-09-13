@@ -1,0 +1,132 @@
+/* DisplayPage.module.css */
+.displayPageContainer {
+    background-color: #121212; /* Dark background */
+    color: #f5f5f5; /* Light text for dark theme */
+    padding: 2rem;
+    margin: 0; /* Remove margins */
+    width: 100vw; /* Full viewport width */
+    min-height: 100vh; /* Ensure it covers the full viewport height */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.displayPageHeader {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.displayPageSubHeader {
+    font-size: 1.8rem;
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.displayPageParagraph {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #b3b3b3;
+}
+
+.displayPageInput,
+.displayPageTextarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    border: 1px solid #444444;
+    background-color: #222222;
+    color: #ffffff;
+    transition: border 0.3s ease;
+}
+
+.displayPageInput:focus,
+.displayPageTextarea:focus {
+    border-color: #009688; /* Hover focus color */
+    outline: none;
+}
+
+.displayPageButton {
+    background-color: #009688; /* Button color */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    transition: background-color 0.8s ease, transform 0.9s ease;
+}
+
+.displayPageButton:hover {
+    background-color: #00796b; /* Darker hover color */
+    transform: scale(1.05);
+}
+
+.dynamicSection {
+    background-color: #1e1e1e;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #333333;
+}
+
+.addEducationSection,
+.addProjectSection,
+.addAchievementSection,
+.addCertificationSection {
+    margin-top: 2rem;
+}
+
+button.removeButton {
+    background-color: #e53935;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.removeButton:hover {
+    background-color: #b71c1c;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.buttonSection {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.displayPageTextarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Scrollbar for Textarea */
+textarea::-webkit-scrollbar {
+    width: 10px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background-color: #222222;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: #009688;
+    border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background-color: #00796b;
+}
