@@ -1,127 +1,143 @@
-/* Ensure all styles are applied correctly */
+/* Base container settings for the resume */
 #resume-template-4 .container {
     width: 100%;
     max-width: 210mm; /* A4 width */
     margin: 0 auto;
     padding: 20mm;
     background-color: #ffffff;
-    background-image: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%); /* Subtle gradient */
+    background-image: linear-gradient(to bottom, #ffffff 0%, #f0f4f8 100%);
     font-family: 'Arial', sans-serif;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
+/* Header layout and styling */
 #resume-template-4 .header {
     display: flex;
-    justify-content: flex-end; /* Align contents to the right */
-    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
-#resume-template-4 .contactInfo {
-    text-align: right;
+/* Contact information text */
+#resume-template-4 .contactInfo p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
 }
 
 #resume-template-4 .name {
-    font-size: 26px;
+    font-size: 32px;
     font-weight: bold;
     color: #222;
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-#resume-template-4 .details {
-    font-size: 16px;
-    color: #555;
-    margin: 0;
-}
-
+/* Link styling */
 #resume-template-4 .link {
-    color: #007BFF;
+    color: #000; /* Changed from blue to black */
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 #resume-template-4 .link:hover {
+    color: #444; /* Slight hover effect using a lighter black */
     text-decoration: underline;
 }
 
+/* Divider between sections */
 #resume-template-4 .resumeDivider {
-    border-top: 2px solid #222;
+    border-top: 2px solid #444;
     margin: 20px 0;
+    opacity: 0.7;
 }
 
+/* Section layout and title */
 #resume-template-4 .section {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    padding: 0 10px;
 }
 
 #resume-template-4 .sectionHeading {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     color: #222;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Added shadow */
+    border-bottom: 2px solid #000; /* Changed from blue to black */
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Remove bold styling from CareerObjective specifically */
+/* Career objective paragraph */
 #resume-template-4 .career-objective p {
-    font-weight: normal;
+    font-weight: 300;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin: 10px 0;
 }
 
-/* Specific sections with bold titles */
-#resume-template-4 .education,
-#resume-template-4 .skills,
-#resume-template-4 .experience,
-#resume-template-4 .projects {
-    font-weight: bold;
-    font-size: 22px;
-    color: #000;
-}
-
+/* Table styling */
 #resume-template-4 .tableContainer {
     margin: 10px 0;
+    width: 100%;
+    overflow-x: auto;
 }
 
 #resume-template-4 .table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 14px;
 }
 
 #resume-template-4 .tableCell {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: left;
+    color: #555;
 }
 
 #resume-template-4 .tableHeader {
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    padding: 8px;
+    background-color: #000; /* Changed from blue to black */
+    color: #ffffff;
+    border: 1px solid #000; /* Changed from blue to black */
+    padding: 12px;
     text-align: left;
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
+/* Alternating row colors */
 #resume-template-4 .rowEven {
-    background-color: #fafafa;
+    background-color: #f2f2f2;
 }
 
-#resume-template-4 .sectionParagraph {
-    margin: 5px 0;
-}
-
+/* General bold text class */
 #resume-template-4 .boldText {
     font-weight: bold;
+    color: #222;
 }
 
+/* PDF download button styling */
 #resume-template-4 .pdfDownloadButton {
-    background-color: #007BFF;
+    background-color: #000; /* Changed from blue to black */
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
+    border-radius: 25px;
+    padding: 12px 25px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow for 3D effect */
+    margin-top: 30px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #resume-template-4 .pdfDownloadButton:hover {
-    background-color: #0056b3;
+    background-color: #333; /* Slight hover effect with a lighter black */
+    transform: translateY(-2px);
 }

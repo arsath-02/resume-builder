@@ -1,37 +1,28 @@
 import React from 'react';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import './Template3.css';
 
 const Template3 = ({ formData }) => {
     const generatePDF = () => {
-        const input = document.getElementById('resume-template-3');
-        html2canvas(input)
-            .then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'pt',
+            format: 'a4'
+        });
 
-                const pdf = new jsPDF({
-                    orientation: 'portrait',
-                    unit: 'pt',
-                    format: 'a4'
-                });
+        // Get the HTML content for the resume
+        const content = document.getElementById('resume-template-3');
 
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = pdf.internal.pageSize.getHeight();
-                const margin = 40;
-
-                const imgWidth = canvas.width;
-                const imgHeight = canvas.height;
-                const ratio = Math.min((pdfWidth - 2 * margin) / imgWidth, (pdfHeight - 2 * margin) / imgHeight);
-                const imgScaledWidth = imgWidth * ratio;
-                const imgScaledHeight = imgHeight * ratio;
-
-                pdf.addImage(imgData, 'PNG', margin, margin, imgScaledWidth, imgScaledHeight);
+        pdf.html(content, {
+            callback: (pdf) => {
                 pdf.save('resume-template3.pdf');
-            })
-            .catch((error) => {
-                console.error('Error generating PDF:', error);
-            });
+            },
+            margin: [20, 20, 20, 20], // Margin for the document
+            autoPaging: 'text',       // Automatically add pages for long content
+            html2canvas: { scale: 0.8 }, // Adjust scale for better fitting
+            x: 20,                    // X position in the PDF
+            y: 20                     // Y position in the PDF
+        });
     };
 
     const renderSection = (title, content) => {
@@ -65,8 +56,7 @@ const Template3 = ({ formData }) => {
                     </div>
                 </div>
             );
-        } 
-        else if (title === 'Certifications' || title === 'Languages' || title === 'Hobbies') {
+        } else if (['Certifications', 'Languages', 'Hobbies', 'Areas of Interest', 'Achievements', 'Leadership Qualities'].includes(title)) {
             return (
                 <div className="section">
                     <div className="section-heading">{title}</div>
@@ -75,13 +65,6 @@ const Template3 = ({ formData }) => {
                             <li key={index}>{item}</li>
                         ))}
                     </ul>
-                </div>
-            );
-        } else if (title === 'Achievements') {
-            return (
-                <div className="section">
-                    <div className="section-heading">{title}</div>
-                    <p>{content}</p>
                 </div>
             );
         } else {
@@ -98,7 +81,7 @@ const Template3 = ({ formData }) => {
                                 ) : value ? (
                                     <p key={key}><strong>{key}:</strong> {value}</p>
                                 ) : null
-                            ))} 
+                            ))}
                         </div>
                     ))}
                 </div>
@@ -108,35 +91,6 @@ const Template3 = ({ formData }) => {
 
     const safeJoin = (array) => {
         return Array.isArray(array) && array.length > 0 ? array.join(', ') : '';
-    };
-
-    const renderAchievements = () => {
-        if (formData.Achievements && Array.isArray(formData.Achievements)) {
-            const validAchievements = formData.Achievements
-                .map(achievement => {
-                    if (typeof achievement === 'object' && achievement !== null) {
-                        return (
-                            <div key={JSON.stringify(achievement)}>
-                                {Object.entries(achievement).map(([key, value]) => (
-                                    value ? <p key={key}><strong>{key}:</strong> {value}</p> : null
-                                ))}
-                            </div>
-                        );
-                    }
-                    return typeof achievement === 'string' && achievement.trim() !== '' ? achievement : null;
-                })
-                .filter(achievement => achievement !== null);
-
-            return validAchievements.length > 0 ? (
-                <div className="section">
-                    <div className="section-heading">Achievements</div>
-                    <div>
-                        {validAchievements}
-                    </div>
-                </div>
-            ) : null;
-        }
-        return null;
     };
 
     const renderResume = () => {
@@ -163,7 +117,9 @@ const Template3 = ({ formData }) => {
                     {renderSection('Certifications', formData.Certifications)}
                     {renderSection('Languages', formData.Languages)}
                     {renderSection('Hobbies', formData.Hobbies)}
-                    {renderAchievements()}
+                    {renderSection('Achievements', formData.Achievements)}
+                    {renderSection('Areas of Interest', formData.AreasOfInterest)}
+                    {renderSection('Leadership Qualities', formData.LeadershipQualities)}
                 </>
             );
         } else if (CareerLevel === 'Beginner') {
@@ -179,8 +135,8 @@ const Template3 = ({ formData }) => {
                     {renderSection('Projects', formData.Projects)}
                     {renderSection('Certifications', formData.Certifications)}
                     {renderSection('Languages', formData.Languages)}
-                    {renderSection('Hobbies', formData.Hobbies)}
-                    {renderAchievements()}
+                    {renderSection('Achievements', formData.Achievements)}
+                    {renderSection('Leadership Qualities', formData.LeadershipQualities)}
                 </>
             );
         } else if (CareerLevel === 'Mid level') {
@@ -196,8 +152,8 @@ const Template3 = ({ formData }) => {
                     {renderSection('Projects', formData.Projects)}
                     {renderSection('Certifications', formData.Certifications)}
                     {renderSection('Languages', formData.Languages)}
-                    {renderSection('Hobbies', formData.Hobbies)}
-                    {renderAchievements()}
+                    {renderSection('Achievements', formData.Achievements)}
+                    {renderSection('Leadership Qualities', formData.LeadershipQualities)}
                 </>
             );
         } else if (CareerLevel === 'Senior level') {
@@ -212,7 +168,9 @@ const Template3 = ({ formData }) => {
                     {renderSection('Experience', formData.Experience)}
                     {renderSection('Projects', formData.Projects)}
                     {renderSection('Certifications', formData.Certifications)}
-                    {renderAchievements()}
+                    {renderSection('Languages', formData.Languages)}
+                    {renderSection('Achievements', formData.Achievements)}
+                    {renderSection('Leadership Qualities', formData.LeadershipQualities)}
                 </>
             );
         } else {
@@ -228,9 +186,7 @@ const Template3 = ({ formData }) => {
                 <div className="header">
                     <div className="contact-info">
                         <p className="name">{formData.Name || ''}</p>
-                        {formData.CareerLevel && (
-                            <p className="details">{formData.CareerLevel}</p>
-                        )}
+                        {formData.CareerLevel && <p className="details">{formData.CareerLevel}</p>}
                         {formData.Email && <p>Email: <a href={`mailto:${formData.Email}`}>{formData.Email}</a></p>}
                         {formData.PhoneNumber && <p>Phone: {formData.PhoneNumber}</p>}
                         {formData.GitHub && <p>GitHub: <a href={formData.GitHub} target="_blank" rel="noopener noreferrer">{formData.GitHub}</a></p>}

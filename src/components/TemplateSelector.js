@@ -5,6 +5,7 @@ import Template1Image from '../components/images/template1.jpeg';
 import Template2Image from '../components/images/template2.jpeg';
 import Template3Image from '../components/images/template3.jpeg';
 import Template4Image from '../components/images/template4.jpeg';
+import Template5Image from '../components/images/template5.jpeg';
 import './TemplateSelector.css';
 
 const TemplateSelector = () => {
@@ -47,6 +48,12 @@ const TemplateSelector = () => {
                     <Link to="/resume-builder/template4" state={{ formData }}>
                         <img src={Template4Image} alt="Template 4" />
                         <p>Template 4</p>
+                    </Link>
+                </div>
+                <div className="template-item" onClick={handleTemplateClick}>
+                    <Link to="/resume-builder/template5" state={{ formData }}>
+                        <img src={Template5Image} alt="Template 5" />
+                        <p>Template 5</p>
                     </Link>
                 </div>
             </div>

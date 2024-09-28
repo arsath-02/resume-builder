@@ -5,6 +5,8 @@ import Template2 from './Template2';
 import './ResumeBuilder.css'; // Import the CSS file
 import Template3 from './Template3';
 import Template4 from './Template4';
+import Template5 from './Template5';
+
 
 const ResumeBuilder = () => {
     const location = useLocation();
@@ -18,6 +20,7 @@ const ResumeBuilder = () => {
             {templateId === 'template2' && <Template2 formData={formData} />}
             {templateId === 'template3' && <Template3 formData={formData} />}
             {templateId === 'template4' && <Template4 formData={formData} />}
+            {templateId === 'template5' && <Template5 formData={formData} />}
         </div>
     );
 };

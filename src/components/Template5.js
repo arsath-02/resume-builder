@@ -1,8 +1,8 @@
 import React from 'react';
 import jsPDF from 'jspdf';
-import './Template4.css';
+import './Template5.css';
 
-const Template4 = ({ formData }) => {
+const Template5 = ({ formData }) => {
     const generatePDF = () => {
         const pdf = new jsPDF({
             orientation: 'portrait',
@@ -10,21 +10,21 @@ const Template4 = ({ formData }) => {
             format: 'a4'
         });
 
-        // Get the HTML content for the resume
-        const content = document.getElementById('resume-template-4');
+        const content = document.getElementById('resume-template-5');
 
-        // Use jsPDF's html method to directly convert the HTML into the PDF
+        // Convert HTML content to PDF
         pdf.html(content, {
             callback: (pdf) => {
-                pdf.save('resume-template4.pdf');
+                pdf.save('resume-template5.pdf');
             },
-            margin: [20, 20, 20, 20],
+            margin: [20, 20, 20, 20], // Adjusting the margin for better placement
             autoPaging: 'text',
-            html2canvas: { scale: 0.6 }, // Adjust scaling for better fit
+            html2canvas: { scale: 0.6 }, // Scaling the HTML content for better fit
             x: 20,
             y: 20
         });
     };
+
     const renderSection = (title, content) => {
         if (!content || content.length === 0) return null;
 
@@ -56,7 +56,7 @@ const Template4 = ({ formData }) => {
                     </div>
                 </div>
             );
-        } else if (title === 'Certifications' || title === 'Languages' || title === 'Hobbies' || title === 'Areas of Interest' || title === 'Achievements' || title === 'Leadership Qualities') {
+        } else if (['Certifications', 'Languages', 'Hobbies', 'Areas of Interest', 'Achievements', 'Leadership Qualities'].includes(title)) {
             return (
                 <div className="section">
                     <div className="sectionHeading">{title}</div>
@@ -73,21 +73,15 @@ const Template4 = ({ formData }) => {
                     <div className="sectionHeading">{title}</div>
                     {content.map((item, index) => (
                         <div key={index}>
-                            {Object.entries(item).map(([key, value]) =>
+                            {Object.entries(item).map(([key, value]) => (
                                 typeof value === 'object' ? (
-                                    Object.entries(value).map(([nestedKey, nestedValue]) =>
-                                        nestedValue ? (
-                                            <p key={nestedKey}>
-                                                <strong>{nestedKey}:</strong> {nestedValue}
-                                            </p>
-                                        ) : null
-                                    )
+                                    Object.entries(value).map(([nestedKey, nestedValue]) => (
+                                        nestedValue ? <p key={nestedKey}><strong>{nestedKey}:</strong> {nestedValue}</p> : null
+                                    ))
                                 ) : value ? (
-                                    <p key={key}>
-                                        <strong>{key}:</strong> {value}
-                                    </p>
+                                    <p key={key}><strong>{key}:</strong> {value}</p>
                                 ) : null
-                            )}
+                            ))}
                         </div>
                     ))}
                 </div>
@@ -116,7 +110,7 @@ const Template4 = ({ formData }) => {
                         { 'Programming Languages': safeJoin(formData.ProgrammingLanguages) },
                         { 'Web Technologies': safeJoin(formData.WebTechnologies) },
                         { 'Tools and Frameworks': safeJoin(formData.ToolsandFrameworks) },
-                        { 'Databases': safeJoin(formData.Databases) }
+                        { 'Databases': safeJoin(formData.Databases) },
                     ])}
                     {renderSection('Experience', formData.Experience)}
                     {renderSection('Projects', formData.Projects)}
@@ -182,36 +176,40 @@ const Template4 = ({ formData }) => {
                 </>
             );
         } else {
-            return <p>Career Level not specified</p>;
+            return (
+                <p>Career Level not specified</p>
+            );
         }
     };
 
     return (
         <div className="resume-container">
-            <div id="resume-template-4" className="container">
-                {/* Resume content */}
+            <div id="resume-template-5" className="container">
                 <div className="header">
                     <div className="contactInfo">
-                        {formData.Name && <p className="name">{formData.Name}</p>}
-                        {formData.PhoneNumber && <p>{formData.PhoneNumber}</p>}
-                        {formData.CareerLevel && <p>{formData.CareerLevel}</p>}
-                        <p>
-                            {formData.Email && <span><a href={`mailto:${formData.Email}`} className="link">{formData.Email}</a></span>}
-                            {formData.LinkedIn && <span> | <a href={formData.LinkedIn} target="_blank" rel="noopener noreferrer" className="link">{formData.LinkedIn}</a></span>}
-                            {formData.GitHub && <span> | <a href={formData.GitHub} target="_blank" rel="noopener noreferrer" className="link">{formData.GitHub}</a></span>}
-                        </p>
+                        <p className="name">{formData.Name || ''}</p>
+                        {formData.CareerLevel && (
+                            <p className="details">{formData.CareerLevel}</p>
+                        )}
+                        <div className="inlineLinks">
+                            {formData.PhoneNumber && <p>{formData.PhoneNumber}</p>}
+                            {formData.Email && <p> <a href={`mailto:${formData.Email}`} className="link">{formData.Email}</a></p>}
+                            {formData.LinkedIn && <p> <a href={formData.LinkedIn} target="_blank" rel="noopener noreferrer" className="link">{formData.LinkedIn}</a></p>}
+                            {formData.GitHub && <p><a href={formData.GitHub} target="_blank" rel="noopener noreferrer" className="link">{formData.GitHub}</a></p>}
+                        </div>
                     </div>
                 </div>
 
                 <div className="resumeDivider"></div>
 
                 {renderResume()}
-            </div>
 
-            <button className="pdfDownloadButton" onClick={generatePDF}>Download as PDF</button>
+                <div className="resumeDivider"></div>
+
+                <button className="pdfDownloadButton" onClick={generatePDF}>Download PDF</button>
+            </div>
         </div>
     );
 };
 
-export default Template4;
-
+export default Template5;

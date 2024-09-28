@@ -15,17 +15,22 @@ const DisplayPage = ({ resumeData }) => {
         WebTechnologies: Array.isArray(resumeData?.WebTechnologies) ? resumeData.WebTechnologies : resumeData?.WebTechnologies ? [resumeData.WebTechnologies] : [],
         ToolsandFrameworks: Array.isArray(resumeData?.ToolsandFrameworks) ? resumeData.ToolsandFrameworks : resumeData?.ToolsandFrameworks ? [resumeData.ToolsandFrameworks] : [],
         Databases: Array.isArray(resumeData?.Databases) ? resumeData.Databases : resumeData?.Databases ? [resumeData.Databases] : [],
-        Experience: resumeData?.Experience || [{ Position: '', Company: '', Location: '', Dates: '', Description: '' }],
+        Experience: resumeData?.Experience || [{ Position: '', Company: '', Dates: '', Description: '' }],
         Projects: resumeData?.Projects || [{ ProjectName: '', Description: '' }],
         Achievements: resumeData?.Achievements ? Object.values(resumeData.Achievements) : [],
         CareerLevel: resumeData?.CareerLevel || '',
-        Certifications: resumeData?.Certifications || []
+        Certifications: resumeData?.Certifications || [],
+        AreasOfInterest:resumeData?.AreasOfInterest || [],
+        LeadershipQualities:resumeData?.LeadershipQualities||[]
+
     }));
+    console.log(resumeData);
 
     const [newAchievement, setNewAchievement] = useState('');
     const [newProject, setNewProject] = useState({ ProjectName: '', Description: '' });
     const [newEducation, setNewEducation] = useState({ Institution: '', Year: '', Degree: '', Results: '' });
     const [newCertification, setNewCertification] = useState('');
+    const [newExperience, setNewExperience] = useState({ Position: '', Company: '', Dates: '', Description: '' });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -40,7 +45,9 @@ const DisplayPage = ({ resumeData }) => {
             Experience: resumeData?.Experience || [{ Position: '', Company: '', Location: '', Dates: '', Description: '' }],
             Projects: resumeData?.Projects || [{ ProjectName: '', Description: '' }],
             CareerLevel: resumeData?.CareerLevel || '',
-            Certifications: resumeData?.Certifications || []
+            Certifications: resumeData?.Certifications || [],
+            AreasOfInterest:resumeData?.AreasOfInterest || [],
+            LeadershipQualities:resumeData?.LeadershipQualities||[]
         }));
     }, [resumeData]);
 
@@ -105,6 +112,16 @@ const DisplayPage = ({ resumeData }) => {
         }
     };
 
+    const handleAddExperience = () => {
+        if (newExperience.Position.trim() && newExperience.Company.trim() && newExperience.Location.trim() && newExperience.Dates.trim() && newExperience.Description.trim()) {
+            setFormData(prevData => ({
+                ...prevData,
+                Experience: [...prevData.Experience, newExperience]
+            }));
+            setNewExperience({ Position: '', Company: '', Location: '', Dates: '', Description: '' });
+        }
+    };
+
     const handleRemoveEducation = (index) => {
         const updatedEducation = formData.Education.filter((_, i) => i !== index);
         setFormData({ ...formData, Education: updatedEducation });
@@ -123,6 +140,11 @@ const DisplayPage = ({ resumeData }) => {
     const handleRemoveAchievement = (index) => {
         const updatedAchievements = formData.Achievements.filter((_, i) => i !== index);
         setFormData({ ...formData, Achievements: updatedAchievements });
+    };
+
+    const handleRemoveExperience = (index) => {
+        const updatedExperience = formData.Experience.filter((_, i) => i !== index);
+        setFormData({ ...formData, Experience: updatedExperience });
     };
 
     const handleCareerLevelChange = (e) => {
@@ -171,6 +193,100 @@ const DisplayPage = ({ resumeData }) => {
                     onChange={handleCareerLevelChange}
                     placeholder="Enter your career level (e.g., Fresher, Beginner, Mid level, Senior level)"
                 />
+            </section>
+
+            {/* Programming Languages Section */}
+            <section className={styles.formSection}>
+                <h2 className={styles.displayPageSubHeader}>Programming Languages</h2>
+                <p className={styles.displayPageParagraph}>
+                    <input
+                        type="text"
+                        className={styles.displayPageInput}
+                        value={getDisplayValue(formData.ProgrammingLanguages)}
+                        readOnly
+                        placeholder="Enter programming languages"
+                    />
+                </p>
+            </section>
+
+            {/* Web Technologies Section */}
+            <section className={styles.formSection}>
+                <h2 className={styles.displayPageSubHeader}>Web Technologies</h2>
+                <p className={styles.displayPageParagraph}>
+                    <input
+                        type="text"
+                        className={styles.displayPageInput}
+                        value={getDisplayValue(formData.WebTechnologies)}
+                        readOnly
+                        placeholder="Enter web technologies"
+                    />
+                </p>
+            </section>
+
+            {/* Tools and Frameworks Section */}
+            <section className={styles.formSection}>
+                <h2 className={styles.displayPageSubHeader}>Tools and Frameworks</h2>
+                <p className={styles.displayPageParagraph}>
+                    <input
+                        type="text"
+                        className={styles.displayPageInput}
+                        value={getDisplayValue(formData.ToolsandFrameworks)}
+                        readOnly
+                        placeholder="Enter tools and frameworks"
+                    />
+                </p>
+            </section>
+
+            {/* Databases Section */}
+            <section className={styles.formSection}>
+                <h2 className={styles.displayPageSubHeader}>Databases</h2>
+                <p className={styles.displayPageParagraph}>
+                    <input
+                        type="text"
+                        className={styles.displayPageInput}
+                        value={getDisplayValue(formData.Databases)}
+                        readOnly
+                        placeholder="Enter databases"
+                    />
+                </p>
+            </section>
+
+            {/* Other Skills Section */}
+            <section className={styles.formSection}>
+                <h2 className={styles.displayPageSubHeader}>Other Skills</h2>
+                <p className={styles.displayPageParagraph}>
+                    <input
+                        type="text"
+                        className={styles.displayPageInput}
+                        value={getDisplayValue(formData.OtherSkills)}
+                        readOnly
+                        placeholder="Enter other skills"
+                    />
+                </p>
+            </section>
+            <section className={styles.formSection}>
+                <h2 className={styles.displayPageSubHeader}>Areas Of Interest</h2>
+                <p className={styles.displayPageParagraph}>
+                    <input
+                        type="text"
+                        className={styles.displayPageInput}
+                        value={getDisplayValue(formData.AreasOfInterest)}
+                        readOnly
+                        placeholder="Enter Areas of Interest"
+                    />
+                </p>
+            </section>
+            <section className={styles.formSection}>
+                <h2 className={styles.displayPageSubHeader}>LeadershipQualities</h2>
+                <p className={styles.displayPageParagraph}>
+                    <input
+                        type="text"
+                        className={styles.displayPageInput}
+                        value={getDisplayValue(formData.LeadershipQualities)}
+                        readOnly
+                        placeholder="Enter leaderShip Qualities"
+                    />
+                </p>
             </section>
 
             {/* Education Section */}
@@ -268,6 +384,65 @@ const DisplayPage = ({ resumeData }) => {
                         </p>
                     ))}
                     <button className={styles.displayPageButton} onClick={handleAddProject}>Add Project</button>
+                </div>
+            </section>
+
+            {/* Experience Section */}
+            <section className={styles.formSection}>
+                <h2 className={styles.displayPageSubHeader}>Experience</h2>
+
+                {/* Existing Experience Entries */}
+                {formData.Experience.map((exp, index) => (
+                    <div key={index} className={styles.dynamicSection}>
+                        {['Position', 'Company', 'Location', 'Dates', 'Description'].map(field => (
+                            <p className={styles.displayPageParagraph} key={field}>
+                                <strong>{field.replace(/([A-Z])/g, ' $1')}:</strong>
+                                {field === 'Description' ? (
+                                    <textarea
+                                        className={styles.displayPageTextarea}
+                                        value={exp[field]}
+                                        onChange={(e) => handleInputChange(e, field, 'Experience', index)}
+                                        placeholder={`Enter ${field.toLowerCase()}`}
+                                    />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        className={styles.displayPageInput}
+                                        value={exp[field]}
+                                        onChange={(e) => handleInputChange(e, field, 'Experience', index)}
+                                        placeholder={`Enter ${field.toLowerCase()}`}
+                                    />
+                                )}
+                            </p>
+                        ))}
+                        <button className={styles.displayPageButton} onClick={() => handleRemoveExperience(index)}>Remove Experience</button>
+                    </div>
+                ))}
+
+                {/* Add New Experience Section */}
+                <div className={styles.addExperienceSection}>
+                    {['Position', 'Company', 'Dates', 'Description'].map(field => (
+                        <p key={field} className={styles.displayPageParagraph}>
+                            <strong>{field.replace(/([A-Z])/g, ' $1')}:</strong>
+                            {field === 'Description' ? (
+                                <textarea
+                                    placeholder={field.replace(/([A-Z])/g, ' $1')}
+                                    value={newExperience[field]}
+                                    onChange={(e) => setNewExperience({ ...newExperience, [field]: e.target.value })}
+                                    className={styles.displayPageTextarea}
+                                />
+                            ) : (
+                                <input
+                                    type="text"
+                                    placeholder={field.replace(/([A-Z])/g, ' $1')}
+                                    value={newExperience[field]}
+                                    onChange={(e) => setNewExperience({ ...newExperience, [field]: e.target.value })}
+                                    className={styles.displayPageInput}
+                                />
+                            )}
+                        </p>
+                    ))}
+                    <button className={styles.displayPageButton} onClick={handleAddExperience}>Add Experience</button>
                 </div>
             </section>
 

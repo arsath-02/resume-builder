@@ -1,37 +1,27 @@
 import React from 'react';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import './Template2.css';
 
 const Template2 = ({ formData }) => {
     const generatePDF = () => {
-        const input = document.getElementById('resume-template-2');
-        html2canvas(input)
-            .then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
+        const doc = new jsPDF({
+            orientation: 'portrait',
+            unit: 'pt',
+            format: 'a4'
+        });
 
-                const pdf = new jsPDF({
-                    orientation: 'portrait',
-                    unit: 'pt',
-                    format: 'a4'
-                });
+        const content = document.getElementById('resume-template-2');
 
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = pdf.internal.pageSize.getHeight();
-                const margin = 40;
-
-                const imgWidth = canvas.width;
-                const imgHeight = canvas.height;
-                const ratio = Math.min((pdfWidth - 2 * margin) / imgWidth, (pdfHeight - 2 * margin) / imgHeight);
-                const imgScaledWidth = imgWidth * ratio;
-                const imgScaledHeight = imgHeight * ratio;
-
-                pdf.addImage(imgData, 'PNG', margin, margin, imgScaledWidth, imgScaledHeight);
-                pdf.save('resume-template2.pdf');
-            })
-            .catch((error) => {
-                console.error('Error generating PDF:', error);
-            });
+        doc.html(content, {
+            callback: function (pdf) {
+                pdf.save('resume.pdf');
+            },
+            margin: [20, 20, 20, 20], // Margin for the document
+            autoPaging: 'text',
+            html2canvas: { scale: 0.6 }, // Adjust scaling for better fitting
+            x: 20,
+            y: 20
+        });
     };
 
     const renderSection = (title, content) => {
@@ -65,8 +55,7 @@ const Template2 = ({ formData }) => {
                     </div>
                 </div>
             );
-        } 
-        else if (title === 'Certifications' || title === 'Languages' || title === 'Hobbies') {
+        } else if (['Certifications', 'Languages', 'Hobbies', 'Areas of Interest', 'Achievements', 'Leadership Qualities'].includes(title)) {
             return (
                 <div className="section">
                     <div className="section-heading">{title}</div>
@@ -75,13 +64,6 @@ const Template2 = ({ formData }) => {
                             <li key={index}>{item}</li>
                         ))}
                     </ul>
-                </div>
-            );
-        } else if (title === 'Achievements') {
-            return (
-                <div className="section">
-                    <div className="section-heading">{title}</div>
-                    <p>{content}</p>
                 </div>
             );
         } else {
@@ -98,45 +80,12 @@ const Template2 = ({ formData }) => {
                                 ) : value ? (
                                     <p key={key}><strong>{key}:</strong> {value}</p>
                                 ) : null
-                            ))} 
+                            ))}
                         </div>
                     ))}
                 </div>
             );
         }
-    };
-
-    const safeJoin = (array) => {
-        return Array.isArray(array) && array.length > 0 ? array.join(', ') : '';
-    };
-
-    const renderAchievements = () => {
-        if (formData.Achievements && Array.isArray(formData.Achievements)) {
-            const validAchievements = formData.Achievements
-                .map(achievement => {
-                    if (typeof achievement === 'object' && achievement !== null) {
-                        return (
-                            <div key={JSON.stringify(achievement)}>
-                                {Object.entries(achievement).map(([key, value]) => (
-                                    value ? <p key={key}><strong>{key}:</strong> {value}</p> : null
-                                ))}
-                            </div>
-                        );
-                    }
-                    return typeof achievement === 'string' && achievement.trim() !== '' ? achievement : null;
-                })
-                .filter(achievement => achievement !== null);
-
-            return validAchievements.length > 0 ? (
-                <div className="section">
-                    <div className="section-heading">Achievements</div>
-                    <div>
-                        {validAchievements}
-                    </div>
-                </div>
-            ) : null;
-        }
-        return null;
     };
 
     const renderResume = () => {
@@ -153,73 +102,23 @@ const Template2 = ({ formData }) => {
                     )}
                     {renderSection('Education', formData.Education)}
                     {renderSection('Skills', [
-                        { 'Programming Languages': safeJoin(formData.ProgrammingLanguages) },
-                        { 'Web Technologies': safeJoin(formData.WebTechnologies) },
-                        { 'Tools and Frameworks': safeJoin(formData.ToolsandFrameworks) },
-                        { 'Databases': safeJoin(formData.Databases) },
+                        { 'Programming Languages': formData.ProgrammingLanguages.join(', ') },
+                        { 'Web Technologies': formData.WebTechnologies.join(', ') },
+                        { 'Tools and Frameworks': formData.ToolsandFrameworks.join(', ') },
+                        { 'Databases': formData.Databases.join(', ') }
                     ])}
                     {renderSection('Experience', formData.Experience)}
                     {renderSection('Projects', formData.Projects)}
                     {renderSection('Certifications', formData.Certifications)}
                     {renderSection('Languages', formData.Languages)}
                     {renderSection('Hobbies', formData.Hobbies)}
-                    {renderAchievements()}
+                    {renderSection('Achievements', formData.Achievements)}
+                    {renderSection('Areas of Interest', formData.AreasOfInterest)}
+                    {renderSection('Leadership Qualities', formData.LeadershipQualities)}
                 </>
-            );
-        } else if (CareerLevel === 'Beginner') {
-            return (
-                <>
-                    {formData.CareerObjective && (
-                        <div className="section">
-                            <div className="section-heading">Career Objective</div>
-                            <p>{formData.CareerObjective}</p>
-                        </div>
-                    )}
-                    {renderSection('Experience', formData.Experience)}
-                    {renderSection('Projects', formData.Projects)}
-                    {renderSection('Certifications', formData.Certifications)}
-                    {renderSection('Languages', formData.Languages)}
-                    {renderSection('Hobbies', formData.Hobbies)}
-                    {renderAchievements()}
-                </>
-            );
-        } else if (CareerLevel === 'Mid level') {
-            return (
-                <>
-                    {formData.CareerObjective && (
-                        <div className="section">
-                            <div className="section-heading">Career Objective</div>
-                            <p>{formData.CareerObjective}</p>
-                        </div>
-                    )}
-                    {renderSection('Experience', formData.Experience)}
-                    {renderSection('Projects', formData.Projects)}
-                    {renderSection('Certifications', formData.Certifications)}
-                    {renderSection('Languages', formData.Languages)}
-                    {renderSection('Hobbies', formData.Hobbies)}
-                    {renderAchievements()}
-                </>
-            );
-        } else if (CareerLevel === 'Senior level') {
-            return (
-                <>
-                    {formData.CareerObjective && (
-                        <div className="section">
-                            <div className="section-heading">Career Objective</div>
-                            <p>{formData.CareerObjective}</p>
-                        </div>
-                    )}
-                    {renderSection('Experience', formData.Experience)}
-                    {renderSection('Projects', formData.Projects)}
-                    {renderSection('Certifications', formData.Certifications)}
-                    {renderAchievements()}
-                </>
-            );
-        } else {
-            return (
-                <p>Career Level not specified</p>
             );
         }
+        return <p>Career Level not specified</p>;
     };
 
     return (
@@ -228,21 +127,16 @@ const Template2 = ({ formData }) => {
                 <div className="header">
                     <div className="contact-info">
                         <p className="name">{formData.Name || ''}</p>
-                        {formData.CareerLevel && (
-                            <p className="details">{formData.CareerLevel}</p>
-                        )}
+                        {formData.CareerLevel && <p className="details">{formData.CareerLevel}</p>}
                         {formData.Email && <p>Email: <a href={`mailto:${formData.Email}`}>{formData.Email}</a></p>}
                         {formData.PhoneNumber && <p>Phone: {formData.PhoneNumber}</p>}
                         {formData.GitHub && <p>GitHub: <a href={formData.GitHub} target="_blank" rel="noopener noreferrer">{formData.GitHub}</a></p>}
                         {formData.LinkedIn && <p>LinkedIn: <a href={formData.LinkedIn} target="_blank" rel="noopener noreferrer">{formData.LinkedIn}</a></p>}
                     </div>
                 </div>
-
                 <div className="resume-divider"></div>
-
                 {renderResume()}
             </div>
-
             <button className="pdf-download-button" onClick={generatePDF}>Download as PDF</button>
         </div>
     );

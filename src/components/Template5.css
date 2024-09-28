@@ -1,0 +1,144 @@
+/* Resume Container */
+#resume-template-5 .container {
+    width: 100%;
+    max-width: 210mm; /* A4 width */
+    margin: 0 auto;
+    padding: 25mm; /* Adjusted padding for Template 5 */
+    background-color: #ffffff; /* Pure white background */
+    background-image: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%); /* Subtle gradient */
+    font-family: 'Verdana', sans-serif; /* Font family for Template 5 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow for a lifted effect */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    text-align: center; /* Center-align all text */
+}
+
+/* Header */
+#resume-template-5 .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align header contents */
+    margin-bottom: 30px; /* Increased margin-bottom */
+    padding-bottom: 15px; /* Added padding for spacing */
+    border-bottom: 2px solid #ffd700; /* Yellow divider at the bottom of the header */
+}
+
+/* Contact Info */
+#resume-template-5 .contactInfo {
+    text-align: center; /* Center-align contact info */
+    font-size: 16px; /* Reduced font size for better alignment */
+    margin-top: 15px; /* Space above contact info */
+}
+
+#resume-template-5 .contactInfo p {
+    margin: 5px 0; /* Reduced margin for better spacing */
+}
+
+#resume-template-5 .name {
+    font-size: 32px; /* Larger font size for name */
+    font-weight: bold;
+    color: #00796b; /* Teal color for name */
+    margin: 0;
+}
+
+#resume-template-5 .details {
+    font-size: 18px; /* Larger font size for details */
+    color: #555; /* Slightly darker color for career level */
+    margin: 5px 0;
+}
+
+#resume-template-5 .link {
+    color: #00796b; /* Teal color for links */
+    text-decoration: none;
+    font-size: 14px; /* Reduced font size for links */
+}
+
+#resume-template-5 .link:hover {
+    text-decoration: underline;
+}
+
+/* Flexbox for horizontal alignment of contact links */
+#resume-template-5 .inlineLinks {
+    display: flex;
+    justify-content: center; /* Center-align links */
+    gap: 15px; /* Space between links */
+    margin-top: 10px; /* Space above links */
+}
+
+/* Resume Divider */
+#resume-template-5 .resumeDivider {
+    margin: 30px 0; /* Increased margin for clearer division */
+}
+
+/* Sections */
+#resume-template-5 .section {
+    margin-bottom: 30px; /* Increased margin between sections */
+}
+
+#resume-template-5 .sectionHeading {
+    font-size: 24px; /* Larger font size for section headings */
+    font-weight: bold;
+    color: #00796b; /* Teal color for section headings */
+    border-bottom: 2px solid #ffd700; /* Teal color border for section headings */
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for section headings */
+}
+
+/* Table Styling */
+#resume-template-5 .tableContainer {
+    margin: 15px 0; /* Margin around tables */
+}
+
+#resume-template-5 .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto; /* Center-align table */
+}
+
+#resume-template-5 .tableCell {
+    border: 1px solid #ddd; /* Lighter border color for table cells */
+    padding: 12px;
+    text-align: left;
+    background-color: #ffffff; /* White background for table cells */
+}
+
+#resume-template-5 .tableHeader {
+    background-color: #f0f0f0; /* Lighter background color for headers */
+    border: 1px solid #ddd; /* Lighter border color for headers */
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+#resume-template-5 .rowEven {
+    background-color: #f9f9f9; /* Slightly lighter row background */
+}
+
+/* Paragraphs */
+#resume-template-5 .sectionParagraph {
+    margin: 8px 0; /* Increased margin for paragraphs */
+    line-height: 1.6; /* Better line spacing for readability */
+}
+
+#resume-template-5 .boldText {
+    font-weight: bold;
+}
+
+/* PDF Download Button */
+#resume-template-5 .pdfDownloadButton {
+    background-color: #00796b; /* Teal color for button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 14px 24px; /* Increased padding */
+    font-size: 18px; /* Larger font size for the button */
+    cursor: pointer;
+    margin-top: 30px; /* Increased margin above button */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Deeper shadow for button */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effects */
+}
+
+#resume-template-5 .pdfDownloadButton:hover {
+    background-color: #004d40; /* Darker hover effect for button */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}

@@ -1,109 +1,162 @@
-/* Scoped styles for Template 1 */
-
-/* Main container styling */
-#resume-template-1 .resume-container {
+/* General Container for the entire resume */
+.resume-container {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    max-width: 210mm; /* Width of A4 page */
-    margin: auto;
-    background-color: #f9f9f9; /* Light background for better contrast */
-}
-
-/* Header styling */
-#resume-template-1 .resume-header {
-    text-align: center;
-    margin-bottom: 20px; /* Space below header */
-}
-
-#resume-template-1 .resume-header h1 {
-    font-size: 28px; /* Larger font size for name */
-    margin: 0;
     color: #333;
 }
 
-#resume-template-1 .resume-header .contact-info {
-    font-size: 16px; /* Slightly larger font size for contact info */
-    color: #555;
-    margin-top: 5px;
+/* Header Section */
+.resume-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the top */
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #1a73e8; /* Blue color for the underline */
 }
 
-#resume-template-1 .resume-header .contact-info a {
+.name-section {
+    flex-basis: 60%;
+}
+
+.contact-info {
+    text-align: right; /* Align contact info to the right */
+    font-size: 14px; /* Adjust font size */
+}
+
+.links-section {
+    margin-top: 5px; /* Space between name and links */
+}
+
+.links-section a {
+    margin-right: 10px; /* Space between links */
+    color: #1a73e8; /* Blue color for links */
     text-decoration: none;
-    color: #0066cc;
 }
 
-#resume-template-1 .resume-header .contact-info a:hover {
+.links-section a:hover {
     text-decoration: underline;
 }
 
-/* Divider styling */
-#resume-template-1 .resume-divider {
-    border-top: 2px solid #007bff; /* Blue divider for better visibility */
-    margin: 20px 0;
+/* Common Styles for Subtopic Headers */
+.subtopic-header {
+    font-size: 18px; /* Adjust to desired size */
+    color: #1a73e8; /* Blue color */
+    margin: 20px 0 10px 0; /* Adjust margin as needed */
 }
 
-/* Section styling */
-#resume-template-1 .resume-section {
-    margin-bottom: 30px; /* Increased margin for better separation between sections */
+/* Divider Line */
+.subtopic-divider {
+    height: 2px;
+    background-color: #1a73e8; /* Blue color */
+    margin: 10px 0; /* Space around the divider */
 }
 
-#resume-template-1 .resume-section h2 {
-    font-size: 22px; /* Larger font size for section headings */
-    border-bottom: 2px solid #007bff; /* Blue underline for section headings */
-    padding-bottom: 8px;
-    margin-bottom: 15px;
-    color: #333;
+/* Career Objective Section */
+.career-objective-section {
+    margin-top: 20px;
+    font-size: 14px;
 }
 
-#resume-template-1 .resume-section ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+/* Technical Skills Section */
+.technical-skills-section ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 14px;
 }
 
-#resume-template-1 .resume-section ul li {
-    margin-bottom: 15px; /* Increased margin for list items */
+.technical-skills-section ul li {
+    margin-bottom: 5px;
 }
 
-/* Table styling */
-#resume-template-1 .table-container table {
-    width: 100%;
-    border-collapse: collapse;
+/* Experience Section */
+.experience-section {
+    margin-top: 30px;
+}
+
+.job {
     margin-bottom: 20px;
 }
 
-#resume-template-1 .table-container th, #resume-template-1 .table-container td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+.job h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
 }
 
-#resume-template-1 .table-container th {
-    background-color: #f2f2f2;
+.job p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
 }
 
-/* Button styling */
-#resume-template-1 .pdf-download-button {
-    display: block;
-    margin: 30px auto; /* More space above and below the button */
-    padding: 12px 25px; /* Increased padding for better clickability */
-    font-size: 18px; /* Larger font size for the button */
-    background-color: #007bff;
+/* Education Section */
+.education-section {
+    margin-top: 30px;
+}
+
+.education-item {
+    margin-bottom: 15px;
+}
+
+.education-item h3 {
+    font-size: 16px;
+    color: #333;
+}
+
+.education-item p {
+    font-size: 14px;
+    margin: 0;
+    color: #666;
+}
+
+/* Projects Section */
+.projects-section {
+    margin-top: 30px;
+}
+
+.project-item h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.project-item p {
+    font-size: 14px;
+    margin: 0;
+    color: #666;
+}
+
+/* Certifications Section */
+.certifications-section {
+    margin-top: 30px;
+}
+
+.certifications-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.certifications-section ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* PDF Download Button */
+.pdf-download-button {
+    background-color: #1a73e8; /* Blue button */
     color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 8px; /* Rounded corners for a modern look */
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: center;
 }
 
-#resume-template-1 .pdf-download-button:hover {
-    background-color: #0056b3; /* Darker shade of blue on hover */
-}
-
-/* Achievements section styling */
-#resume-template-1 .achievements-section p {
-    font-size: 16px; /* Adjust font size as needed */
-    margin-bottom: 10px; /* Space below achievements */
+.pdf-download-button:hover {
+    background-color: #0d47a1; /* Darker blue on hover */
 }
