@@ -24,7 +24,7 @@ function UploadPage({ setResumeData }) {
         setLoading(true); // Set loading to true when upload starts
 
         try {
-            const response = await axios.post('http://localhost:8000/process', data, {
+            const response = await axios.post('http://127.0.0.1:8000/process', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

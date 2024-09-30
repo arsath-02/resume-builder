@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import jsPDF from 'jspdf';
 import './Template5.css';
 
 const Template5 = ({ formData }) => {
+    const [pdfUrl, setPdfUrl] = useState('');
+
     const generatePDF = () => {
         const pdf = new jsPDF({
             orientation: 'portrait',
@@ -15,6 +17,12 @@ const Template5 = ({ formData }) => {
         // Convert HTML content to PDF
         pdf.html(content, {
             callback: (pdf) => {
+                // Save the PDF to a Blob
+                const pdfBlob = pdf.output('blob');
+                // Create a URL for the Blob
+                const pdfUrl = URL.createObjectURL(pdfBlob);
+                setPdfUrl(pdfUrl);
+                // Automatically download the PDF
                 pdf.save('resume-template5.pdf');
             },
             margin: [20, 20, 20, 20], // Adjusting the margin for better placement
@@ -22,6 +30,14 @@ const Template5 = ({ formData }) => {
             html2canvas: { scale: 0.6 }, // Scaling the HTML content for better fit
             x: 20,
             y: 20
+        });
+    };
+
+    const copyPdfUrl = () => {
+        navigator.clipboard.writeText(pdfUrl).then(() => {
+            alert('PDF URL copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy PDF URL: ', err);
         });
     };
 
@@ -207,6 +223,12 @@ const Template5 = ({ formData }) => {
                 <div className="resumeDivider"></div>
 
                 <button className="pdfDownloadButton" onClick={generatePDF}>Download PDF</button>
+                {pdfUrl && (
+                    <div>
+                        <button className="pdfUrlButton" onClick={copyPdfUrl}>Copy PDF URL</button>
+                        <a href={pdfUrl} target="_blank" rel="noopener noreferrer">Open PDF in new tab</a>
+                    </div>
+                )}
             </div>
         </div>
     );
