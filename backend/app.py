@@ -56,4 +56,5 @@ def _read_file_from_path(path):
     return data
 
 if __name__ == "__main__":
-    app.run(port=8000, debug=True)
+    port = int(os.environ.get('PORT', 8000))  # Get the port from environment variables or use 8000
+    app.run(host='0.0.0.0', port=port, debug=True)
